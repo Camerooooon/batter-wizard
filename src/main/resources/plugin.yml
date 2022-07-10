@@ -1,0 +1,9 @@
+name: Wizard
+version: ${project.version}
+main: network.cameron.wizard.Wizard
+api-version: 1.13
+
+commands:
+  givestick:
+    description: Get a wizard stick
+    usage: /<command>
