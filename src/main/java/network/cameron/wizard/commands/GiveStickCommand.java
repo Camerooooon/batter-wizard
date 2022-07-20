@@ -1,5 +1,6 @@
 package network.cameron.wizard.commands;
 
+import network.cameron.wizard.util.Color;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -24,7 +25,7 @@ public class GiveStickCommand implements CommandExecutor {
         ItemStack item = new ItemStack(Material.STICK, 1);
         item.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&bWizard Stick"));
+        meta.setDisplayName(Color.translate("&bWizard Stick"));
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         item.setItemMeta(meta);
         player.getInventory().addItem(item);

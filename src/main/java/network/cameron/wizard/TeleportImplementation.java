@@ -1,6 +1,7 @@
 package network.cameron.wizard;
 
-import org.bukkit.Bukkit;
+import network.cameron.wizard.util.cooldown.impl.Cooldown;
+import network.cameron.wizard.util.cooldown.ICompletable;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
@@ -14,16 +15,16 @@ public class TeleportImplementation {
     private static final int DISTANCE = 10;
     private static final int MAX_UPWARD_SHIFT = 3;
 
-    public static HashMap<Player, Long> cooldowns = new HashMap<Player, Long>();
+    public static HashMap<Player, ICompletable> cooldowns = new HashMap<>();
 
     public static void teleportPlayer(Player player) {
 
         if (cooldowns.containsKey(player)) {
-            if ((System.currentTimeMillis() - cooldowns.get(player)) < COOLDOWN) {
+            if (!cooldowns.get(player).done()) {
                 return;
             }
         }
-        cooldowns.put(player, System.currentTimeMillis());
+        cooldowns.put(player, new Cooldown(1000));
 
         int upwardShift = 0;
 

@@ -1,6 +1,7 @@
 package network.cameron.wizard.listeners;
 
 import network.cameron.wizard.TeleportImplementation;
+import network.cameron.wizard.util.Color;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -21,7 +22,7 @@ public class StickListener implements Listener {
         }
 
         // Check that the item is correct
-        if (!(event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&bWizard Stick")))) {
+        if (!(event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(Color.translate("&bWizard Stick")))) {
             return;
         }
 
