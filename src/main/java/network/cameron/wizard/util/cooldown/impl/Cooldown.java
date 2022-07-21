@@ -21,6 +21,6 @@ public class Cooldown implements ICompletable {
 
     @Override
     public boolean done() {
-        return (System.currentTimeMillis() - startTime) < duration;
+        return (System.currentTimeMillis() - startTime) > duration;
     }
 }

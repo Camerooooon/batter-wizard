@@ -13,6 +13,7 @@ public class CooldownTracker {
     private int durationMillis;
 
     public CooldownProvider provider = new CooldownProvider(this);
+    public CooldownChecker checker = new CooldownChecker(this);
 
     /**
      * Create a new instance of the CooldownTracker
@@ -37,4 +38,22 @@ public class CooldownTracker {
     public int getDurationMillis() {
         return durationMillis;
     }
+
+    /**
+     * Checks if a specified player is on cooldown
+     * @param player the player to check
+     * @return if the specified player is on cooldown
+     */
+    public boolean onCooldown(Player player) {
+        return checker.check(player);
+    }
+
+    /**
+     * Places a player on cooldown
+     * @param player the player to be place on cooldown
+     */
+    public void placeOnCooldown(Player player) {
+        provider.place(player);
+    }
+
 }

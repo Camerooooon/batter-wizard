@@ -19,6 +19,6 @@ public class CooldownChecker {
         if (!manager.getCooldowns().containsKey(player)) {
             return false;
         }
-        return manager.getCooldowns().get(player).done();
+        return !manager.getCooldowns().get(player).done();
     }
 }

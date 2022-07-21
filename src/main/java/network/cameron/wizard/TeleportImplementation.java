@@ -1,5 +1,8 @@
 package network.cameron.wizard;
 
+import network.cameron.wizard.util.cooldown.CooldownChecker;
+import network.cameron.wizard.util.cooldown.CooldownProvider;
+import network.cameron.wizard.util.cooldown.CooldownTracker;
 import network.cameron.wizard.util.cooldown.impl.Cooldown;
 import network.cameron.wizard.util.cooldown.ICompletable;
 import org.bukkit.Location;
@@ -14,17 +17,14 @@ public class TeleportImplementation {
     private static final int COOLDOWN = 1000;
     private static final int DISTANCE = 10;
     private static final int MAX_UPWARD_SHIFT = 3;
-
-    public static HashMap<Player, ICompletable> cooldowns = new HashMap<>();
+    private static final CooldownTracker cooldowns = new CooldownTracker(5000);
 
     public static void teleportPlayer(Player player) {
 
-        if (cooldowns.containsKey(player)) {
-            if (!cooldowns.get(player).done()) {
-                return;
-            }
+        if (cooldowns.onCooldown(player)) {
+            return;
         }
-        cooldowns.put(player, new Cooldown(1000));
+        cooldowns.placeOnCooldown(player);
 
         int upwardShift = 0;
 
